@@ -1,0 +1,12 @@
+﻿@using TpGrupal.Models
+@model Usuarios
+@{
+    ViewBag.Title = "Registrarse";
+}
+<h2>Registrarse</h2>
+<form method="post" action="@Url.Action("Index", "Login")">
+    Nombre @Html.TextBoxFor(x => x.Nombre) @Html.ValidationMessageFor(x => x.Nombre) <br />
+    Contraseña @Html.PasswordFor(x => x.Contraseña) @Html.ValidationMessageFor(x => x.Contraseña) <br />
+    Mail @Html.TextBoxFor(x => x.Mail) @Html.ValidationMessageFor(x => x.Mail) <br />
+    <input type="submit" value="Registrarse" /> <br />
+</form>
