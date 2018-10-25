@@ -108,5 +108,23 @@ namespace TpGrupal.Models
             return a;
 
         }
+
+        public static string VerUsuarioMail(string Mail)
+        {
+            string retorno;
+            //sp_VerUsuarioMail
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_VerUsuarioMail";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pMail", Mail);
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            while (dataReader.Read())
+            {
+                retorno = dataReader["Mail"].ToString();
+            }
+            Desconectar(conexion);
+            return retorno;
+        }
     }
 }
