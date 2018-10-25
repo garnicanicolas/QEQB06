@@ -24,7 +24,7 @@ namespace TpGrupal.Controllers
             else
             {
                 ViewBag.Alerta = "Ingrese un usuario existente";
-                return RedirectToAction("Index", "Login");
+                return View("Index");
             }
         }
 
