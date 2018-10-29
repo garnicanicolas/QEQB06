@@ -43,18 +43,21 @@ namespace TpGrupal.Controllers
             if (Mail != "" && Nombre != "" && Contraseña != "")
             {
                 if (Mail != BD.VerUsuarioMail(Mail))
-                {                   
+                {
+                    ViewBag.Error = "";
                      BD.RegistarUsuario(Mail, Nombre, Contraseña);
                      return RedirectToAction("Index", "Home");
                     
                 }
                 else
                 {
+                    ViewBag.Error = "El Mail ya esta ingresado";
                     return View("Registrar");
                 }
             }            
             else
             {
+                ViewBag.Error = "No deje ningun campo vacio";
                 return View("Registrar");
             }
 
