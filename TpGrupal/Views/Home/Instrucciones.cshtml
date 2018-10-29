@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Instrucciones";
+}
+    <br/> <font size=6> <u> <b> Instrucciones:<br /> </b> </u> </font>
+<body>
+    <font size=4>
+        <br />  Cada jugador dispone de un tablero idéntico que contiene N personajes identificados por su nombre y su imagen.
+        Podrás jugar con diferentes categorías de personajes como “futbolistas”, “profesores”, “Artistas”, etc.
+        El objetivo principal del juego es adivinar el personaje seleccionado por la máquina o por otro usuario, 
+        dependiendo del modo de juego elegido.
+        La “máquina” selecciona un personaje al azar. Luego de dicha selección, comienza la partida y dispondrás de
+        un botín inicial (1000000 bitcoins).
+        El objetivo del juego consiste en descubrir el personaje seleccionado por la “máquina” y quedarse con el mayor botín posible.
+        Para descubrir el personaje existe una serie de preguntas con características de este. Dichas características tienen como
+        respuesta un SI, si el personaje en cuestión posee dicha definición.
+        Cada pregunta descontará del botín una suma de bitcoins. Esa cantidad, estará definida para cada pregunta en la base de datos.
+        Se podrá arriesgar en cualquier momento. Al fallar, se descontará del botín la suma de 50000 bitcoins. Si quedan 5 
+        personajes o menos y fallas, perderá su botín completo.
+        El listado de personajes se mostrará al inicio del juego. Luego quedarán ocultos. Si en la mitad del juego, se desea 
+        ver de nuevo la lista de personajes restantes, se descontarán 5000 bitcoins por cada vez que se consulte.
+        Un ejemplo de pregunta es «¿Tiene bigotes tu personaje?». Cuando el oponente contesta la pregunta son eliminados los
+        personajes que no cumplen el criterio y se tumban las tarjetas del tablero. Adicionalmente, se descuenta el importe de tu botín.
+        Cuando el personaje es adivinado, deberás completar tu nombre y se guardará en el ranking de jugadores tu posición 
+        en el juego.<br />
+        -	Modos de Juego Invitado.<br />
+        -	Usuario Registrado. (Se acumulan tus bitcoins al final del juego)<br />
+    </font>
+</body>
+

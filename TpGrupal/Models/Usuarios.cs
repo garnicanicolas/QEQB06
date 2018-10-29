@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
 namespace TpGrupal.Models
 {
     public class Usuarios
@@ -38,6 +39,7 @@ namespace TpGrupal.Models
                 _Mail = value;
             }
         }
+        //Required
         public string Nombre
         {
             get

@@ -24,7 +24,7 @@ namespace TpGrupal.Controllers
             else
             {
                 ViewBag.Alerta = "Ingrese un usuario existente";
-                return RedirectToAction("Index", "Login");
+                return View("Index");
             }
         }
 
@@ -36,6 +36,28 @@ namespace TpGrupal.Controllers
         public ActionResult Registrarse()
         {
             return View();
+        }
+
+        public ActionResult Registrar(string Mail,string Nombre, string Contraseña)
+        {
+            if (Mail != "" && Nombre != "" && Contraseña != "")
+            {
+                if (Mail != BD.VerUsuarioMail(Mail))
+                {                   
+                     BD.RegistarUsuario(Mail, Nombre, Contraseña);
+                     return RedirectToAction("Index", "Home");
+                    
+                }
+                else
+                {
+                    return View("Registrar");
+                }
+            }            
+            else
+            {
+                return View("Registrar");
+            }
+
         }
     }
 }

@@ -8,7 +8,6 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Styles/Menu_desplegable.css" rel="stylesheet" />
-
 </head>
 <body>
 
@@ -20,17 +19,16 @@
                         <a href="#">Menu</a>
                         <ul>
                             @{
-
                                 if (BD.VerSesion() > 0)
                                 {
                                     <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+
                                     if (BD.VerSiEsAdmin())
                                     {
                                         <li><a href="@Url.Action("ABMs", "Home")">ABMs</a></li>
                                     }
-
-
                                     <li><a href="@Url.Action("MyAccount", "Menu")">Mi cuenta</a></li>
+                                    <li><a href="@Url.Action("Instrucciones", "Home")">Instrucciones</a></li>
                                     <li><a href="@Url.Action("Logout", "Login")">Log out</a></li>
                                 }
                                 else
@@ -38,10 +36,11 @@
                                     <li><a href="@Url.Action("Index", "Home")">Home</a></li>
                                     <li><a href="@Url.Action("Index", "Login")">Iniciar sesión</a></li>
                                     <li><a href="@Url.Action("Registrarse", "Login")">Registrarse</a></li>
+                                    <li><a href="@Url.Action("Instrucciones", "Home")">Instrucciones</a></li>
+
                                 }
                             }
                         </ul>
-
                     </li>
                 </ul>
             </div>
@@ -50,14 +49,18 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
+
+
         <footer>
-            2018 - Juan De Luca - Nicolás Garnica - Matías Gabay - Belén Fontana
+            <hr />
+            2018 - Juan De Luca - Nicolás Garnica - Matías Gabay - María Belén Fontana
         </footer>
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

@@ -5,7 +5,7 @@
 }
 <h2>Login</h2>
 <form method="post" action="@Url.Action("Verificar", "Login")">
-    @ViewBag.Alerta
+    <h3> @ViewBag.Alerta </h3><br>
     Mail: @Html.TextBoxFor(x => x.Mail, new { type = "email" }) @Html.ValidationMessageFor(x => x.Nombre) <br />
     Contraseña: @Html.PasswordFor(x => x.Contraseña, new { Type = "password" }) @Html.ValidationMessageFor(x=>x.Contraseña) <br />
     <input type="submit" value="Login" /> <br />
