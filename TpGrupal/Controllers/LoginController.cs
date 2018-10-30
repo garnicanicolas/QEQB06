@@ -16,7 +16,7 @@ namespace TpGrupal.Controllers
         }
         public ActionResult Verificar(Usuarios x)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 ViewBag.Alerta = "";
                 return View("Index", x);
@@ -56,7 +56,7 @@ namespace TpGrupal.Controllers
             }
             else
             {
-                bool a = BD.RegistarUsuario (x);
+                bool a = BD.RegistarUsuario(x);
                 if (a == true)
                 {
                     return RedirectToAction("Index", "Login");
@@ -65,8 +65,31 @@ namespace TpGrupal.Controllers
                 {
                     ViewBag.Alerta = "Ingrese un usuario existente";
                     return View("Index");
-                }
+                }                
             }
         }
     }
 }
+
+
+/* =======
+                                if (Mail != BD.VerUsuarioMail(Mail))
+                                {
+                                    ViewBag.Error = "";
+                                     BD.RegistarUsuario(Mail, Nombre, Contraseña);
+                                     return RedirectToAction("Index", "Home");
+
+                                }
+                                else
+                                {
+                                    ViewBag.Error = "El Mail ya esta ingresado";
+                                    return View("Registrar");
+                                }
+                            }            
+                            else
+                            {
+                                ViewBag.Error = "No deje ningun campo vacio";
+                                return View("Registrar");
+                >>>>>>> 3e2c2a66f1569699afdbd0bd8873ad1db19c6f31
+                            }
+                      */
