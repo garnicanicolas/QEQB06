@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace TpGrupal.Models
@@ -27,6 +28,7 @@ namespace TpGrupal.Models
                 _IdUsuario = value;
             }
         }
+        [Required(ErrorMessage = "Escriba algo")]
         public string Mail
         {
             get
@@ -39,7 +41,7 @@ namespace TpGrupal.Models
                 _Mail = value;
             }
         }
-        //Required
+        [Required(ErrorMessage ="Escriba algo")]
         public string Nombre
         {
             get
@@ -52,6 +54,8 @@ namespace TpGrupal.Models
                 _Nombre = value;
             }
         }
+        [Required(ErrorMessage = "Escriba algo")]
+        [Range(5, 16, ErrorMessage = "La contraseña tiene que tener entre 5 y 16 caracteres")]
         public string Contraseña
         {
             get

@@ -14,17 +14,26 @@ namespace TpGrupal.Controllers
         {
             return View();
         }
-        public ActionResult Verificar(string Mail, string contraseña)
+        public ActionResult Verificar(Usuarios x)
         {
-            int x = BD.LoginUsuario(Mail, contraseña);
-            if (x > 0)
+            if(!ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Home");
+                ViewBag.Alerta = "";
+                return View("Index", x);
             }
             else
             {
-                ViewBag.Alerta = "Ingrese un usuario existente";
-                return View("Index");
+                //si es válido
+                int a = BD.LoginUsuario(x);
+                if (a > 0)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.Alerta = "Ingrese un usuario existente";
+                    return View("Index");
+                }
             }
         }
 
@@ -38,26 +47,26 @@ namespace TpGrupal.Controllers
             return View();
         }
 
-        public ActionResult Registrar(string Mail,string Nombre, string Contraseña)
+        public ActionResult VerificarRegistro(Usuarios x)
         {
-            if (Mail != "" && Nombre != "" && Contraseña != "")
+            if (!ModelState.IsValid)
             {
-                if (Mail != BD.VerUsuarioMail(Mail))
-                {                   
-                     BD.RegistarUsuario(Mail, Nombre, Contraseña);
-                     return RedirectToAction("Index", "Home");
-                    
+                ViewBag.Alerta = "";
+                return View("Index", x);
+            }
+            else
+            {
+                bool a = BD.RegistarUsuario (x);
+                if (a == true)
+                {
+                    return RedirectToAction("Index", "Login");
                 }
                 else
                 {
-                    return View("Registrar");
+                    ViewBag.Alerta = "Ingrese un usuario existente";
+                    return View("Index");
                 }
-            }            
-            else
-            {
-                return View("Registrar");
             }
-
         }
     }
 }
