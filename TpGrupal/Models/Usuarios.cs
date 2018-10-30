@@ -28,7 +28,6 @@ namespace TpGrupal.Models
                 _IdUsuario = value;
             }
         }
-        [Required(ErrorMessage = "Escriba algo")]
         public string Mail
         {
             get
@@ -41,7 +40,6 @@ namespace TpGrupal.Models
                 _Mail = value;
             }
         }
-        [Required(ErrorMessage ="Escriba algo")]
         public string Nombre
         {
             get
@@ -54,8 +52,7 @@ namespace TpGrupal.Models
                 _Nombre = value;
             }
         }
-        [Required(ErrorMessage = "Escriba algo")]
-        [Range(5, 16, ErrorMessage = "La contraseña tiene que tener entre 5 y 16 caracteres")]
+        [StringLength(15, ErrorMessage = "Más de 6 letras y menos de 15 ", MinimumLength = 6)]
         public string Contraseña
         {
             get

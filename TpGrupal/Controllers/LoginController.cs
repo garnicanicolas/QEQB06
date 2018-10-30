@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using TpGrupal.Models;
 
 namespace TpGrupal.Controllers
@@ -24,15 +20,23 @@ namespace TpGrupal.Controllers
             else
             {
                 //si es válido
-                int a = BD.LoginUsuario(x);
-                if (a > 0)
+                if (x.Mail == "" || x.Contraseña == "" || x.Mail == null || x.Contraseña == null)
                 {
-                    return RedirectToAction("Index", "Home");
+                    ViewBag.Alerta = "Complete todos los campos";
+                    return View("Index");
                 }
                 else
                 {
-                    ViewBag.Alerta = "Ingrese un usuario existente";
-                    return View("Index");
+                    int a = BD.LoginUsuario(x);
+                    if (a > 0)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ViewBag.Alerta = "Ingrese un usuario existente";
+                        return View("Index");
+                    }
                 }
             }
         }
@@ -56,23 +60,31 @@ namespace TpGrupal.Controllers
             }
             else
             {
-                bool a = BD.RegistarUsuario(x);
-                if (a == true)
+                if (x.Mail == "" || x.Contraseña == "" || x.Nombre == "" ||x.Mail == null || x.Contraseña == null || x.Nombre == null)
                 {
-                    return RedirectToAction("Index", "Login");
+                    ViewBag.Alerta = "Complete todos los campos";
+                    return View("Registrarse");
                 }
                 else
                 {
-                    ViewBag.Alerta = "Ingrese un usuario existente";
-                    return View("Index");
-                }                
+                    bool a = BD.RegistarUsuario(x);
+                    if (a)
+                    {
+                        return RedirectToAction("Index", "Login");
+                    }
+                    else
+                    {
+                        ViewBag.Alerta = "Ingrese un usuario existente";
+                        return View("Registrarse");
+                    }
+                }
             }
         }
     }
 }
 
 
-/* =======
+/*
                                 if (Mail != BD.VerUsuarioMail(Mail))
                                 {
                                     ViewBag.Error = "";
@@ -90,6 +102,5 @@ namespace TpGrupal.Controllers
                             {
                                 ViewBag.Error = "No deje ningun campo vacio";
                                 return View("Registrar");
-                >>>>>>> 3e2c2a66f1569699afdbd0bd8873ad1db19c6f31
                             }
                       */
