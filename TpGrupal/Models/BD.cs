@@ -89,6 +89,57 @@ namespace TpGrupal.Models
 
             return retorno;
         }
+       ////////////////////ABM///CATEGORIA///////////////////////////////////////
+        public static bool RegistrarCategoria(string tipo)
+        {
+            bool a = false;
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_RegistrarCategoria";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pTipo", tipo);
+            int regsAfectados = consulta.ExecuteNonQuery();
+            Desconectar(conexion);
+            if (regsAfectados == 1)
+            {
+                a = true;
+            }
+            return a;
+        }
+        public static bool ModificarCategoria(string tipo, int idcateg)
+        {
+            bool a = false;
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_ModificarCategoria";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pTipo", tipo);
+            consulta.Parameters.AddWithValue("@pIdCategoria", idcateg);
+            int regsAfectados = consulta.ExecuteNonQuery();
+            Desconectar(conexion);
+            if (regsAfectados == 1)
+            {
+                a = true;
+            }
+            return a;
+        }
+        public static bool EliminarCategoria(int idcateg)
+        {
+            bool a = false;
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_EliminarCategoria";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pIdCategoria", idcateg);
+            int regsAfectados = consulta.ExecuteNonQuery();
+            Desconectar(conexion);
+            if (regsAfectados == 1)
+            {
+                a = true;
+            }
+            return a;
+        }
+        ////////////////////ABM///USUARIOS///////////////////////////////////////
         public static bool RegistarUsuario(string Nombre, string Mail, string contraseña)
         {
             bool a = false;
@@ -106,7 +157,91 @@ namespace TpGrupal.Models
                 a = true;
             }
             return a;
-
+        }
+        public static bool ModificarUsuario(int idusuario, string Nombre, string Mail, string contraseña)
+        {
+            bool a = false;
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_ModificarUsuario";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pIdusuario", idusuario);
+            consulta.Parameters.AddWithValue("@pNombre", Nombre);
+            consulta.Parameters.AddWithValue("@pContraseña", contraseña);
+            consulta.Parameters.AddWithValue("@pMail", Mail);
+            int regsAfectados = consulta.ExecuteNonQuery();
+            Desconectar(conexion);
+            if (regsAfectados == 1)
+            {
+                a = true;
+            }
+            return a;
+        }
+        public static bool EliminarUsuario(int idusuario)
+        {
+            bool a = false;
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_EliminarUsuario";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pIdusuario", idusuario);
+            int regsAfectados = consulta.ExecuteNonQuery();
+            Desconectar(conexion);
+            if (regsAfectados == 1)
+            {
+                a = true;
+            }
+            return a;
+        }
+        ////////////////////ABM///PREGUNTAS//////////////////////////////////////
+        public static bool RegistrarPregunta(string Descripcion)
+        {
+            bool a = false;
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_ModificarPregunta";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;            
+            consulta.Parameters.AddWithValue("@pDescripcion", Descripcion);
+            int regsAfectados = consulta.ExecuteNonQuery();
+            Desconectar(conexion);
+            if (regsAfectados == 1)
+            {
+                a = true;
+            }
+            return a;
+        }
+        public static bool ModificarPregunta(int idatri, string Descripcion)
+        {
+            bool a = false;
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_ModificarPregunta";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pIdAtributo", idatri);
+            consulta.Parameters.AddWithValue("@pDescripcion", Descripcion);
+            int regsAfectados = consulta.ExecuteNonQuery();
+            Desconectar(conexion);
+            if (regsAfectados == 1)
+            {
+                a = true;
+            }
+            return a;
+        }
+        public static bool EliminarPregunta(int idatri)
+        {
+            bool a = false;
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_EliminarPregunta";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pIdAtributo", idatri);
+            int regsAfectados = consulta.ExecuteNonQuery();
+            Desconectar(conexion);
+            if (regsAfectados == 1)
+            {
+                a = true;
+            }
+            return a;
         }
     }
 }

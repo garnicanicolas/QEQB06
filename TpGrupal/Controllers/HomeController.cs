@@ -17,5 +17,9 @@ namespace TpGrupal.Controllers
         {
             return View();
         }
+        public ActionResult AdminCategorias()
+        {
+            return View();
+        }
     }
 }

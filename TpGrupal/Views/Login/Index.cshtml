@@ -4,9 +4,12 @@
     ViewBag.Title = "Index";
 }
 <h2>Login</h2>
-<form method="post" action="@Url.Action("Verificar", "Login")">
-    <h3> @ViewBag.Alerta </h3><br>
-    Mail: @Html.TextBoxFor(x => x.Mail, new { type = "email" }) @Html.ValidationMessageFor(x => x.Nombre) <br />
-    Contraseña: @Html.PasswordFor(x => x.Contraseña, new { Type = "password" }) @Html.ValidationMessageFor(x=>x.Contraseña) <br />
-    <input type="submit" value="Login" /> <br />
-</form>
+<link href="~/Styles/Home.css" rel="stylesheet" />
+<body>
+    <form method="post" action="@Url.Action("Verificar", "Login")">
+        <h2> @ViewBag.Alerta </h2>
+        Mail:<br />  @Html.TextBoxFor(x => x.Mail, new { type = "email" }) @Html.ValidationMessageFor(x => x.Nombre) <br />
+        <br />  Contraseña:<br />  @Html.PasswordFor(x => x.Contraseña, new { Type = "password" }) @Html.ValidationMessageFor(x => x.Contraseña) <br />
+        <br />  <input type="submit" value="Login" class="button" /> <br />
+    </form>
+</body>
