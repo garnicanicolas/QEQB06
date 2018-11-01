@@ -1,9 +1,12 @@
 ﻿@using TpGrupal.Models
 @model Usuarios
 @{
-    ViewBag.Title = "Index";
+                /**/
+
+                ViewBag.Title = "Index";
 }
 <h2>Login</h2>
+<<<<<<< HEAD
 <link href="~/Styles/Home.css" rel="stylesheet" />
 <body>
     <form method="post" action="@Url.Action("Verificar", "Login")">
@@ -13,3 +16,12 @@
         <br />  <input type="submit" value="Login" class="button" /> <br />
     </form>
 </body>
+=======
+@using (Html.BeginForm("Verificar", "Login", FormMethod.Post))
+{
+    <h3 style = "color:red" > @ViewBag.Alerta</h3>
+    <h3>Mail:</h3> @Html.TextBoxFor(x => x.Mail, new { type = "email" }) <div style="color:red">@Html.ValidationMessageFor(x => x.Mail) </div><br />
+    <h3>Contraseña: </h3>@Html.PasswordFor(x => x.Contraseña, new { Type = "password" }) <div style="color:red"> @Html.ValidationMessageFor(x => x.Contraseña) </div> <br />
+    <input type="submit" value="Login" /> <br />
+    }
+>>>>>>> c0d68cbfab7a2786bf74c9c75f45e43f434f2d64

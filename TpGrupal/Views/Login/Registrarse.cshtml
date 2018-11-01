@@ -1,9 +1,12 @@
 ﻿@using TpGrupal.Models
 @model Usuarios
 @{
+    /**/
+
     ViewBag.Title = "Registrarse";
 }
 <h2>Registrarse</h2>
+<<<<<<< HEAD
 <link href="~/Styles/Home.css" rel="stylesheet" />
 
 <form method="post" action="@Url.Action("Index", "Login")">
@@ -12,3 +15,13 @@
     <br /> Mail<br />  @Html.TextBoxFor(x => x.Mail) @Html.ValidationMessageFor(x => x.Mail) <br />
     <br />  <input type="submit" value="Registrarse" /> <br />
 </form>
+=======
+@using (Html.BeginForm("VerificarRegistro", "Login", FormMethod.Post))
+{
+    <h3 style="color:red">@ViewBag.Alerta </h3>
+    <h3>Nombre:</h3> @Html.TextBoxFor(x => x.Nombre) <div style="color:red">@Html.ValidationMessageFor(x => x.Nombre) </div><br />
+    <h3>Mail:</h3> @Html.TextBoxFor(x => x.Mail, new { type = "email" }) <div style="color:red">@Html.ValidationMessageFor(x => x.Mail) </div> <br />
+    <h3>Contraseña:</h3> @Html.PasswordFor(x => x.Contraseña, new { Type = "password" }) <div style="color:red">@Html.ValidationMessageFor(x => x.Contraseña) </div><br />
+    <input type="submit" value="Registrarse" /> <br />
+    }
+>>>>>>> c0d68cbfab7a2786bf74c9c75f45e43f434f2d64

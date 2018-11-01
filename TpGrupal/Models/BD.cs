@@ -23,15 +23,15 @@ namespace TpGrupal.Models
             conector.Close();
         }
 
-        public static int LoginUsuario(string Mail, string contraseña)
+        public static int LoginUsuario(Usuarios x)
         {
             int Devolver = 0;
             SqlConnection conexion = Conectar();
             SqlCommand consulta = conexion.CreateCommand();
             consulta.CommandText = "sp_LoginUsuario";
             consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            consulta.Parameters.AddWithValue("@pContraseña", contraseña);
-            consulta.Parameters.AddWithValue("@pMail", Mail);
+            consulta.Parameters.AddWithValue("@pContraseña", x.Contraseña);
+            consulta.Parameters.AddWithValue("@pMail", x.Mail);
             SqlDataReader dataReader = consulta.ExecuteReader();
             while (dataReader.Read())
             {
@@ -140,16 +140,17 @@ namespace TpGrupal.Models
             return a;
         }
         ////////////////////ABM///USUARIOS///////////////////////////////////////
-        public static bool RegistarUsuario(string Nombre, string Mail, string contraseña)
+
+        public static bool RegistarUsuario(Usuarios x)
         {
             bool a = false;
             SqlConnection conexion = Conectar();
             SqlCommand consulta = conexion.CreateCommand();
             consulta.CommandText = "sp_RegistrarUsuario";
             consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            consulta.Parameters.AddWithValue("@pNombre", Nombre);
-            consulta.Parameters.AddWithValue("@pContraseña", contraseña);
-            consulta.Parameters.AddWithValue("@pMail", Mail);
+            consulta.Parameters.AddWithValue("@pNombre", x.Nombre);
+            consulta.Parameters.AddWithValue("@pContraseña", x.Contraseña);
+            consulta.Parameters.AddWithValue("@pMail", x.Mail);
             int regsAfectados = consulta.ExecuteNonQuery();
             Desconectar(conexion);
             if (regsAfectados == 1)
@@ -158,6 +159,7 @@ namespace TpGrupal.Models
             }
             return a;
         }
+
         public static bool ModificarUsuario(int idusuario, string Nombre, string Mail, string contraseña)
         {
             bool a = false;
@@ -242,6 +244,24 @@ namespace TpGrupal.Models
                 a = true;
             }
             return a;
+        }
+
+        public static string VerUsuarioMail(string Mail)
+        {
+            string retorno = "";
+            //sp_VerUsuarioMail
+            SqlConnection conexion = Conectar();
+            SqlCommand consulta = conexion.CreateCommand();
+            consulta.CommandText = "sp_VerUsuarioMail";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@pMail", Mail);
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            while (dataReader.Read())
+            {
+                retorno = dataReader["Mail"].ToString();
+            }
+            Desconectar(conexion);
+            return retorno;
         }
     }
 }
