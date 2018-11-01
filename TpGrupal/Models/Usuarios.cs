@@ -28,6 +28,7 @@ namespace TpGrupal.Models
                 _IdUsuario = value;
             }
         }
+        [Required(ErrorMessage ="Complete el campo Mail")]
         public string Mail
         {
             get
@@ -40,6 +41,7 @@ namespace TpGrupal.Models
                 _Mail = value;
             }
         }
+        [Required(ErrorMessage = "Complete el campo Nombre")]
         public string Nombre
         {
             get
@@ -52,6 +54,7 @@ namespace TpGrupal.Models
                 _Nombre = value;
             }
         }
+        [Required(ErrorMessage = "Complete el campo Contraseña")]
         [StringLength(15, ErrorMessage = "Más de 6 letras y menos de 15 ", MinimumLength = 6)]
         public string Contraseña
         {

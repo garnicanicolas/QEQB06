@@ -8,8 +8,8 @@
 <h2>Login</h2>
 @using (Html.BeginForm("Verificar", "Login", FormMethod.Post))
 {
-    @ViewBag.Alerta
-    <h3>Mail:</h3> @Html.TextBoxFor(x => x.Mail, new { type = "email" }) @Html.ValidationMessageFor(x => x.Nombre) <br />
-    <h3>Contraseña: </h3>@Html.PasswordFor(x => x.Contraseña, new { Type = "password" }) @Html.ValidationMessageFor(x => x.Contraseña) <br />
+    <h3 style = "color:red" > @ViewBag.Alerta</h3>
+    <h3>Mail:</h3> @Html.TextBoxFor(x => x.Mail, new { type = "email" }) <div style="color:red">@Html.ValidationMessageFor(x => x.Mail) </div><br />
+    <h3>Contraseña: </h3>@Html.PasswordFor(x => x.Contraseña, new { Type = "password" }) <div style="color:red"> @Html.ValidationMessageFor(x => x.Contraseña) </div> <br />
     <input type="submit" value="Login" /> <br />
-}
+    }
