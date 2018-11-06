@@ -11,32 +11,24 @@ namespace TpGrupal.Controllers
             return View();
         }
         public ActionResult Verificar(Usuarios x)
-        {
-            if (!ModelState.IsValid)
             {
-                ViewBag.Alerta = "";
-                return View("Index", x);
+            //si es válido
+            if (x.Mail == "" || x.Contraseña == "" || x.Mail == null || x.Contraseña == null)
+            {
+                ViewBag.Alerta = "Complete todos los campos";
+                return View("Index");
             }
             else
             {
-                //si es válido
-                if (x.Mail == "" || x.Contraseña == "" || x.Mail == null || x.Contraseña == null)
+                int a = BD.LoginUsuario(x);
+                if (a > 0)
                 {
-                    ViewBag.Alerta = "Complete todos los campos";
-                    return View("Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    int a = BD.LoginUsuario(x);
-                    if (a > 0)
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else
-                    {
-                        ViewBag.Alerta = "Ingrese datos correctos";
-                        return View("Index");
-                    }
+                    ViewBag.Alerta = "Ingrese datos correctos";
+                    return View("Index");
                 }
             }
         }
@@ -52,8 +44,7 @@ namespace TpGrupal.Controllers
         }
 
         public ActionResult VerificarRegistro(Usuarios x)
-        {//que no pase a login si esta mal la contraseña
-            //Si el usuario ya esta registrado que que avise
+        {
             if (x.Mail == "" || x.Contraseña == "" || x.Nombre == "" || x.Mail == null || x.Contraseña == null || x.Nombre == null)
             {
                 ViewBag.Alerta = "Complete todos los campos";
@@ -69,7 +60,7 @@ namespace TpGrupal.Controllers
                 }
                 else
                 {
-                    if (x.Contraseña.Length > 6 && x.Contraseña.Length < 16)
+                    if (x.Contraseña.Length > 5 && x.Contraseña.Length < 16)
                     {
                         bool a = BD.RegistarUsuario(x);
                         if (a)
@@ -91,25 +82,3 @@ namespace TpGrupal.Controllers
         }
     }
 }
-
-
-/*
-                                if (Mail != BD.VerUsuarioMail(Mail))
-                                {
-                                    ViewBag.Error = "";
-                                     BD.RegistarUsuario(Mail, Nombre, Contraseña);
-                                     return RedirectToAction("Index", "Home");
-
-                                }
-                                else
-                                {
-                                    ViewBag.Error = "El Mail ya esta ingresado";
-                                    return View("Registrar");
-                                }
-                            }            
-                            else
-                            {
-                                ViewBag.Error = "No deje ningun campo vacio";
-                                return View("Registrar");
-                            }
-                      */

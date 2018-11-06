@@ -249,7 +249,6 @@ namespace TpGrupal.Models
         public static string VerUsuarioMail(string Mail)
         {
             string retorno = "";
-            //sp_VerUsuarioMail
             SqlConnection conexion = Conectar();
             SqlCommand consulta = conexion.CreateCommand();
             consulta.CommandText = "sp_VerUsuarioMail";
