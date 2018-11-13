@@ -55,7 +55,11 @@ namespace TpGrupal.Controllers
                 if (x.Mail == BD.VerUsuarioMail(x.Mail))
                 {
                     ViewBag.Alerta = "Ese usuario ya fue creado";
-                    BD.RegistarUsuario(x);
+                    bool y = BD.RegistarUsuario(x);
+                    if (y == false)
+                    {
+                        ViewBag.UserNone = "Ese nombre de usuario ya existe";
+                    }
                     return View("Registrarse");
                 }
                 else
@@ -69,7 +73,7 @@ namespace TpGrupal.Controllers
                         }
                         else
                         {
-                            ViewBag.Alerta = "Ingrese un usuario existente";
+                            ViewBag.Alerta = "Ese usuario ya fue creado";
                             return View("Registrarse");
                         }
                     }

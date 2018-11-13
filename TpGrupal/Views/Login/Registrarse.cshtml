@@ -11,8 +11,9 @@
 @using (Html.BeginForm("VerificarRegistro", "Login", FormMethod.Post))
 {
     <h3 style="color:red">@ViewBag.Alerta </h3>
+    <h3 style="color:red">@ViewBag.UserNone </h3>
     <h3>Nombre:</h3> @Html.TextBoxFor(x => x.Nombre) <div style="color:red">@Html.ValidationMessageFor(x => x.Nombre) </div><br />
     <h3>Mail:</h3> @Html.TextBoxFor(x => x.Mail, new { type = "email" }) <div style="color:red">@Html.ValidationMessageFor(x => x.Mail) </div> <br />
     <h3>Contraseña:</h3> @Html.PasswordFor(x => x.Contraseña, new { Type = "password" }) <div style="color:red">@Html.ValidationMessageFor(x => x.Contraseña) </div><br />
     <input type="submit" value="Registrarse" /> <br />
-    }
+}
